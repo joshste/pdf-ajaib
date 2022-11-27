@@ -5,7 +5,7 @@ https://pdf-ajaib.fly.dev/
 Submit your pdf file with editing instruction in one http request using multi-part form and text field.
 
 
-Install node and npm if you haven't in https://nodejs.org/en/
+Install node yang LTS https://nodejs.org/en/
 
 To install this project dependencies do:
 ```npm install``` 
