@@ -2,6 +2,7 @@ import express from "express";
 import multer from "multer";
 import { handler } from "./handler";
 import cors from "cors";
+import { reorderHandler } from "./reorderHandler";
 
 const port = process.env.PORT || "8080"
 
@@ -12,13 +13,17 @@ const upload = multer({ storage });
 app.use(cors())
 
 app.get('/', (req, res) => {
-    res.send("<h1>Hello!</h1>");
-  });
+  res.send("<h1>Hello!</h1>");
+});
 
 
 app.post('/pdf', upload.single('pdf-file'), handler);
 
+app.post('/reorder-pdf', upload.single("pdf-file"), reorderHandler)
+
+
+
 app.listen(port, () => {
-    console.log("http://localhost:8080/");
+  console.log("http://localhost:8080/");
 });
 
