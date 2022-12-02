@@ -1,6 +1,5 @@
 import express from "express";
 import multer from "multer";
-import { handler } from "./handler";
 import cors from "cors";
 import { reorderHandler } from "./reorderHandler";
 
@@ -16,12 +15,7 @@ app.get('/', (req, res) => {
   res.send("<h1>Hello!</h1>");
 });
 
-
-app.post('/pdf', upload.single('pdf-file'), handler);
-
 app.post('/reorder-pdf', upload.single("pdf-file"), reorderHandler)
-
-
 
 app.listen(port, () => {
   console.log("http://localhost:8080/");

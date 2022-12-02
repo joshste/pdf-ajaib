@@ -1,5 +1,0 @@
-export class ModifierText {
-    constructor() {
-
-    }
-}
