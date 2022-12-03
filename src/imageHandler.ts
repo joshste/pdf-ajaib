@@ -2,17 +2,12 @@ import { Request, Response } from "express";
 import { PDFDocument } from "pdf-lib";
 
 export const imageHandler = async (req: Request, res: Response) => {
-    if(!req.file?.buffer)
-    {
-        res.status(400);
-        res.end();
-        return;
-    } ;
 
     const [posX, posY] = req.body["position"].split(',').map((i:string) => parseInt(i, 10));
     const pageIdx = parseInt(req.body["page-idx"], 10)
 
     if (!req.files){
+      console.log("Tes 2")
         res.status(400);
         res.end();
         return;
@@ -43,7 +38,8 @@ export const imageHandler = async (req: Request, res: Response) => {
         res.end();
   
     } catch (e)
-    {
+    { 
+        console.log("Tes 1")
         res.status(500);
         res.end();
     }
