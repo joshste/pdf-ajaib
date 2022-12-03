@@ -2,6 +2,7 @@ import express from "express";
 import multer from "multer";
 import cors from "cors";
 import { reorderHandler } from "./reorderHandler";
+import { drawingHandler } from "./drawingHandler";
 
 const port = process.env.PORT || "8080"
 
@@ -16,6 +17,7 @@ app.get('/', (req, res) => {
 });
 
 app.post('/reorder-pdf', upload.single("pdf-file"), reorderHandler)
+app.post('/add-drawing', upload.single("pdf-file"), drawingHandler)
 
 app.listen(port, () => {
   console.log("http://localhost:8080/");
