@@ -4,6 +4,7 @@ import cors from "cors";
 import { reorderHandler } from "./reorderHandler";
 import { textHandler } from "./textHandler";
 import { imageHandler } from "./imageHandler";
+import { removeHandler } from "./removeHandler";
 
 const port = process.env.PORT || "8080"
 
@@ -19,6 +20,7 @@ app.get('/', (req, res) => {
 
 app.post('/reorder-pdf', upload.single("pdf-file"), reorderHandler)
 app.post('/add-text', upload.single("pdf-file"),textHandler)
+app.post('/remove-page', upload.single("pdf-file"),removeHandler)
 
 app.post('/add-image', upload.fields([{
   name:'pdf-file',
