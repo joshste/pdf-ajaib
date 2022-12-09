@@ -3,6 +3,9 @@ import multer from "multer";
 import cors from "cors";
 import { reorderHandler } from "./reorderHandler";
 import { drawingHandler } from "./drawingHandler";
+import { textHandler } from "./textHandler";
+import { imageHandler } from "./imageHandler";
+import { removeHandler } from "./removeHandler";
 
 const port = process.env.PORT || "8080"
 
@@ -18,6 +21,16 @@ app.get('/', (req, res) => {
 
 app.post('/reorder-pdf', upload.single("pdf-file"), reorderHandler)
 app.post('/add-drawing', upload.single("pdf-file"), drawingHandler)
+app.post('/add-text', upload.single("pdf-file"),textHandler)
+app.post('/remove-page', upload.single("pdf-file"),removeHandler)
+
+app.post('/add-image', upload.fields([{
+  name:'pdf-file',
+  maxCount:  1
+},{
+  name: 'image-file',
+  maxCount: 1
+}]), imageHandler)
 
 app.listen(port, () => {
   console.log("http://localhost:8080/");
