@@ -9,8 +9,12 @@ export const textHandler = async (req: Request, res: Response) => {
     };
 
     const [X, Y] = req.body["position"].split(',').map((i:string) => parseInt(i, 10));
-    const noPage = req.body["no-page"]
+    const noPage = parseInt(req.body["no-page"], 10)
     const pdfBytes = req.file?.buffer
+    const red = parseFloat(req.body["red"])
+    const green = parseFloat(req.body["green"])
+    const blue = parseFloat(req.body["blue"])
+    const size = parseInt(req.body["size"], 10)
 
     try {
         const pdfDoc = await PDFDocument.load(pdfBytes);
@@ -20,9 +24,9 @@ export const textHandler = async (req: Request, res: Response) => {
         page.drawText(text, {
             x: X,
             y: Y,
-            size: 50,
+            size: size,
             font: helveticaFont,
-            color: rgb(1,1,1),
+            color: rgb(red, green, blue)
         })
         const pdf = await pdfDoc.save()
         res.writeHead(200, {
